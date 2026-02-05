@@ -5,8 +5,9 @@ import { CreateCategoryService } from "../../services/category/CreateCategorySer
 class CreateCategoryController {
     async handle (request: Request, response: Response) {
         const { name }: CategoryRequest = request.body;
+        const user_id = request.user_id;
         const createCategoryService = new CreateCategoryService();
-        const category = await createCategoryService.execute({ name });
+        const category = await createCategoryService.execute({ name, user_id });
         return response.json(category);
     }
 }

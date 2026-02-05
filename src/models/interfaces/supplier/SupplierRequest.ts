@@ -1,4 +1,4 @@
-export interface CategoryRequest {
+export interface SupplierRequest {
     name: string;
     user_id: string;
 }

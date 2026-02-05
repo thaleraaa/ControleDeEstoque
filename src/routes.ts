@@ -17,6 +17,7 @@ import { ListProductsController } from "./controllers/product/ListProductsContro
 import { DeleteProductController } from "./controllers/product/DeleteProductController";
 import { CreateSupplierController } from "./controllers/supplier/CreateSupplierController";
 import { DetailSupplierController } from "./controllers/supplier/ListSupplierController";
+import { DeleteSupplierController } from "./controllers/supplier/DeleteSupplierController";
 
 
 const router = Router();
@@ -48,5 +49,6 @@ router.delete('/product/remove', isAuthenticated, new DeleteProductController().
 // Supplier Router
 router.post('/supplier', isAuthenticated, new CreateSupplierController().handle);
 router.get('/suppliers', isAuthenticated, new DetailSupplierController().handle);
+router.delete('/supplier/remove', isAuthenticated, new DeleteSupplierController().handle);
 
 export { router };

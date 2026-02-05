@@ -7,7 +7,7 @@ class EditCategoryController {
         const { name }: EditCategoryRequest = request.body;
         const category_id = request.query.category_id as string;
         const editCategoryService = new EditCategoryService();
-        const categoryEdited = await editCategoryService.execute({name, category_id})
+        const categoryEdited = await editCategoryService.execute({category_id, name})
         return response.json(categoryEdited);
     }
 }

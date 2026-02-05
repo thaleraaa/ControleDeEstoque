@@ -15,6 +15,10 @@ import { EditProductController } from "./controllers/product/EditProductControll
 import { ListProductByCategoryController } from "./controllers/product/ListProductByCategoryController";
 import { ListProductsController } from "./controllers/product/ListProductsController";
 import { DeleteProductController } from "./controllers/product/DeleteProductController";
+import { CreateSupplierController } from "./controllers/supplier/CreateSupplierController";
+import { DetailSupplierController } from "./controllers/supplier/ListSupplierController";
+import { DeleteSupplierController } from "./controllers/supplier/DeleteSupplierController";
+import { EditSupplierController } from "./controllers/supplier/EditSupplierController";
 
 
 const router = Router();
@@ -42,5 +46,11 @@ router.put('/product/edit', isAuthenticated, upload.single("file"), new EditProd
 router.get('/product', isAuthenticated, new ListProductByCategoryController().handle);
 router.get('/products', isAuthenticated, new ListProductsController().handle);
 router.delete('/product/remove', isAuthenticated, new DeleteProductController().handle);
+
+// Supplier Router
+router.post('/supplier', isAuthenticated, new CreateSupplierController().handle);
+router.get('/suppliers', isAuthenticated, new DetailSupplierController().handle);
+router.delete('/supplier/remove', isAuthenticated, new DeleteSupplierController().handle);
+router.put('/supplier/edit', isAuthenticated, new EditSupplierController().handle);
 
 export { router };

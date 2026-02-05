@@ -2,7 +2,7 @@ import prismaClient from "../../prisma";
 import { ProductRequest } from "../../models/interfaces/product/ProductRequest";
 
 class CreateProductService {
-    async execute ({name, price, description, banner, category_id, amount}:ProductRequest) {
+    async execute ({name, price, description, banner, category_id, amount, user_id, supplier_id}:ProductRequest) {
         if (name === "" || name === null || !name){
             throw new Error ("The Product name is invalid")
         }
@@ -11,6 +11,9 @@ class CreateProductService {
         }
         if (amount === null || !amount){
             throw new Error ("The Product amount is invalid")
+        }
+        if (supplier_id === "" || supplier_id === null || !supplier_id){
+            throw new Error ("The Product price is invalid")
         }
 
         const productExists = await prismaClient.product.findFirst({
@@ -30,7 +33,9 @@ class CreateProductService {
                 description: description,
                 banner: banner,
                 category_id: category_id,
-                amount: +amount
+                amount: +amount,
+                user_id: user_id,
+                supplier_id: supplier_id
             },
             select: {
                 id: true,

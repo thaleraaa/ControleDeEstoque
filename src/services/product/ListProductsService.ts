@@ -6,7 +6,13 @@ class ListProductsService {
             select: {
                 id: true,
                 name: true,
-                amount: true
+                amount: true,
+                supplier: {
+                    select: {
+                        id: true,
+                        name: true
+                    }
+                }
             },
             orderBy: {
                 created_at: 'desc'

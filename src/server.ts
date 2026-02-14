@@ -1,11 +1,18 @@
 import express, { Request, Response, NextFunction } from "express";
+import cors from "cors"
+import swawaggerUi from "swagger-ui-express"; 
+import swaggerDocument from "../swagger.json"
 import { router } from './routes';
+import path from "path";
 
 const app = express();
 const port = 3333;
 
 app.use(express.json());
-app.use(router);
+app.use(cors());
+app.use('/v1',router);
+app.use('/api-docs', swawaggerUi.serve, swawaggerUi.setup(swaggerDocument));
+app.use('/files', express.static(path.resolve(__dirname, "..", "tmp")));
 
 // Middleware de erro para tratar erros assíncronos
 app.use((err: Error, request: Request, response: Response, next: NextFunction) => {
@@ -18,6 +25,12 @@ app.use((err: Error, request: Request, response: Response, next: NextFunction) =
         status: 'error',
         message: 'Internal server error.'
     });
+});
+
+app.get('/terms', (request: Request, response: Response) => {
+    return response.json({
+        message: "Termos de serviço"
+    })
 });
 
 app.listen(port, () => {

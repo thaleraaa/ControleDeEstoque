@@ -21,7 +21,9 @@ model User {
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
 
+  products Product[]
   supplier Supplier[]
+  category Category[]
 
   @@map("users")
 }
@@ -35,6 +37,9 @@ model Category {
 
   products Product[]
 
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+
   @@map("categories")
 }
 
@@ -43,6 +48,7 @@ model Supplier {
   name String
   created_at DateTime? @default(now())
   updated_at DateTime? @default(now())
+  products Product[]
 
   user User @relation(fields: [user_id], references: [id])
   user_id String
@@ -64,20 +70,12 @@ model Product {
   category Category @relation(fields: [category_id], references: [id])
   category_id String
 
-  items Item[]
+  user User @relation(fields: [user_id], references: [id])
+  user_id String
+
+  supplier Supplier @relation(fields: [supplier_id], references: [id])
+  supplier_id String
 
   @@map("products")
-}
-
-model Item {
-  id String @id @default(uuid())
-  amount Int
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  product Product @relation(fields: [product_id], references: [id])
-  product_id String
-
-  @@map("items")
 }
 

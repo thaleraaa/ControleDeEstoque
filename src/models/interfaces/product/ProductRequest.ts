@@ -4,5 +4,7 @@ export interface ProductRequest {
     description: string;
     banner: string;
     category_id: string;
-    amount: string;
+    user_id: string;
+    amount: number;
+    supplier_id: string;
 }

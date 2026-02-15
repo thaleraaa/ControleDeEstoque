@@ -1,25 +1,23 @@
 import prismaClient from "../../prisma";
 
-class ListProductsService {
+class DetailSupplierService {
     async execute () {
-        const allProducts = await prismaClient.product.findMany({
+        const supplier = await prismaClient.supplier.findMany({
             select: {
                 id: true,
                 name: true,
-                amount: true,
-                supplier: {
+                created_at: true,
+                updated_at: true,
+                user: {
                     select: {
                         id: true,
                         name: true
                     }
                 }
-            },
-            orderBy: {
-                created_at: 'desc'
             }
-        })
-        return allProducts;
+        });
+        return supplier;
     }
 }
 
-export { ListProductsService }
+export { DetailSupplierService }

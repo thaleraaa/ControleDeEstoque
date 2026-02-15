@@ -4,7 +4,8 @@ import { CreateProductService } from "../../services/product/CreateProductServic
 
 class CreateProductController {
     async handle (request: Request, response: Response) {
-        const { name, price, description, banner, category_id, amount}: ProductRequest = request.body;
+        const { name, price, description, banner, category_id, amount, supplier_id}: ProductRequest = request.body;
+        const user_id = request.user_id;
         const createProductService = new CreateProductService();
 
         if(!request.file){
@@ -17,7 +18,9 @@ class CreateProductController {
                 description, 
                 banner, 
                 category_id, 
-                amount
+                amount,
+                user_id,
+                supplier_id
             });
             response.json(product);
         }

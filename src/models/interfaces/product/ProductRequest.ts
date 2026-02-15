@@ -5,6 +5,6 @@ export interface ProductRequest {
     banner: string;
     category_id: string;
     user_id: string;
-    amount: string;
+    amount: number;
     supplier_id: string;
 }

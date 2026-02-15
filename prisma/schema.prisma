@@ -76,20 +76,6 @@ model Product {
   supplier Supplier @relation(fields: [supplier_id], references: [id])
   supplier_id String
 
-  //items Item[]
-
   @@map("products")
 }
-
-/*model Item {
-  id String @id @default(uuid())
-  amount Int
-  created_at DateTime? @default(now())
-  updated_at DateTime? @default(now())
-
-  product Product @relation(fields: [product_id], references: [id])
-  product_id String
-
-  @@map("items")
-}*/
 
